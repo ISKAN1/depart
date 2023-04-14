@@ -22,13 +22,11 @@ namespace Projet_1_Shell
         int animalCount = 0;
         int totalWeight = 0;
         int tap = 0;
-
         static void Main(string[] args)
         {
             Program program = new Program();
             program.StartTheMachine();
         }
-
         private void afficherMenu()
         {
             Console.WriteLine("Menu:");
@@ -41,12 +39,10 @@ namespace Projet_1_Shell
             Console.WriteLine("7- Retirer un animal de la liste");
             Console.WriteLine("8- Quitter");
         }
-
         private void StartTheMachine()
         {
             selectChoice();
         }
-
         private void selectChoice()
         {
             afficherMenu();
@@ -84,7 +80,6 @@ namespace Projet_1_Shell
             else if (choice == 8)
             {
                 Console.WriteLine("Programme terminé.");
-                afficherMenu();
             }
             else
             {
@@ -99,7 +94,6 @@ namespace Projet_1_Shell
             Console.WriteLine("Erreur: choix invalide.");
             StartTheMachine();
         }
-
         private void AjouterUnAnimal()
         {
             string animalColor = null;
@@ -150,7 +144,6 @@ namespace Projet_1_Shell
             StartTheMachine();
 
         }
-
         private void VoirListeProprietaire()
         {
             Console.WriteLine("----------------------------------------");
@@ -183,7 +176,6 @@ namespace Projet_1_Shell
 
             StartTheMachine();
         }
-
         private void VoirPoidsTotalAnimaux()
         {
             Console.WriteLine("----------------------------------------");
