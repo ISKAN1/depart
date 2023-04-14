@@ -19,14 +19,17 @@ namespace Projet_1_Shell
         string[] animalColors = new string[10];
         int[] animalAges = new int[10];
         int[] animalWeights = new int[10];
+        int[] id = new int[10];
         int animalCount = 0;
         int totalWeight = 0;
         int tap = 0;
+
         static void Main(string[] args)
         {
             Program program = new Program();
             program.StartTheMachine();
         }
+
         private void afficherMenu()
         {
             Console.WriteLine("Menu:");
@@ -39,10 +42,12 @@ namespace Projet_1_Shell
             Console.WriteLine("7- Retirer un animal de la liste");
             Console.WriteLine("8- Quitter");
         }
+
         private void StartTheMachine()
         {
             selectChoice();
         }
+
         private void selectChoice()
         {
             afficherMenu();
@@ -80,6 +85,7 @@ namespace Projet_1_Shell
             else if (choice == 8)
             {
                 Console.WriteLine("Programme terminé.");
+
             }
             else
             {
@@ -94,41 +100,41 @@ namespace Projet_1_Shell
             Console.WriteLine("Erreur: choix invalide.");
             StartTheMachine();
         }
+
         private void AjouterUnAnimal()
         {
             string animalColor = null;
 
-            for (int tap = 0; tap < 10; tap++)
+
+            Console.WriteLine("Ajouter un animal:");
+            Console.WriteLine("Type de l'animal:");
+            string animalType = Console.ReadLine();
+            Console.WriteLine("Nom de l'animal: ");
+            string animalName = Console.ReadLine();
+            Console.WriteLine("Age de l'animal:");
+            int animalAge = int.Parse(Console.ReadLine());
+            Console.WriteLine("Poids de l'animal:");
+            int animalWeight = int.Parse(Console.ReadLine());
+
+            do
             {
-                Console.WriteLine("Ajouter un animal:");
-                Console.WriteLine("Type de l'animal:");
-                string animalType = Console.ReadLine();
-                Console.WriteLine("Nom de l'animal: ");
-                string animalName = Console.ReadLine();
-                Console.WriteLine("Age de l'animal:");
-                int animalAge = int.Parse(Console.ReadLine());
-                Console.WriteLine("Poids de l'animal:");
-                int animalWeight = int.Parse(Console.ReadLine());
+                Console.WriteLine("Couleur de l'animal (rouge, bleu ou violet):");
+                animalColor = Console.ReadLine();
 
-                do
-                {
-                    Console.WriteLine("Couleur de l'animal (rouge, bleu ou violet):");
-                    animalColor = Console.ReadLine();
+            } while (animalColor != "rouge" && animalColor != "bleu" && animalColor != "violet");
 
-                } while (animalColor != "rouge" && animalColor != "bleu" && animalColor != "violet");
+            Console.WriteLine("Nom du propriétaire:");
+            string ownerName = Console.ReadLine();
 
-                Console.WriteLine("Nom du propriétaire:");
-                string ownerName = Console.ReadLine();
+            animalNames[tap] = animalName;
+            animalTypes[tap] = animalType;
+            animalAges[tap] = animalAge;
+            animalWeights[tap] = animalWeight;
+            animalColors[tap] = animalColor;
+            ownerNames[tap] = ownerName;
+            tap++;
+            StartTheMachine();
 
-                animalNames[tap] = animalName;
-                animalTypes[tap] = animalType;
-                animalAges[tap] = animalAge;
-                animalWeights[tap] = animalWeight;
-                animalColors[tap] = animalColor;
-                ownerNames[tap] = ownerName;
-                tap++;
-                StartTheMachine();
-            }
         }
         private void VoirListeAnimauxPension()
         {
@@ -144,6 +150,7 @@ namespace Projet_1_Shell
             StartTheMachine();
 
         }
+
         private void VoirListeProprietaire()
         {
             Console.WriteLine("----------------------------------------");
@@ -176,6 +183,7 @@ namespace Projet_1_Shell
 
             StartTheMachine();
         }
+
         private void VoirPoidsTotalAnimaux()
         {
             Console.WriteLine("----------------------------------------");
@@ -232,7 +240,7 @@ namespace Projet_1_Shell
             }
             else
             {
-                tap = Convert.ToInt32(null);
+                id[tap] = Convert.ToInt32(null);
                 animalTypes[tap] = null;
                 animalNames[tap] = null;
                 animalAges[tap] = Convert.ToInt32(null);
