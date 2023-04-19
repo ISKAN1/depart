@@ -17,11 +17,11 @@ namespace Projet_1_Shell
         string[] animalNames = new string[10];
         string[] ownerNames = new string[10];
         string[] animalColors = new string[10];
-        int[] animalAges = new int[10];
-        int[] animalWeights = new int[10];
-        int[] id = new int[10];
-        int animalCount = 0;
-        int totalWeight = 0;
+        string[] animalAges = new string[10];
+        string[] animalWeights = new string[10];
+        string[] id = new string[10];
+        string animalCount;
+        
         int tap = 0;
 
         static void Main(string[] args)
@@ -103,18 +103,17 @@ namespace Projet_1_Shell
 
         private void AjouterUnAnimal()
         {
-            string animalColor = null;
-
-
+            string d= null, animalColor = null;
             Console.WriteLine("Ajouter un animal:");
-            Console.WriteLine("Type de l'animal:");
+            d = tap.ToString();
+            Console.WriteLine("Veuillez saisir le type d'animal:");
             string animalType = Console.ReadLine();
-            Console.WriteLine("Nom de l'animal: ");
+            Console.WriteLine("Veuillez saisir le nom de l'animal: ");
             string animalName = Console.ReadLine();
-            Console.WriteLine("Age de l'animal:");
-            int animalAge = int.Parse(Console.ReadLine());
-            Console.WriteLine("Poids de l'animal:");
-            int animalWeight = int.Parse(Console.ReadLine());
+            Console.WriteLine("Veuillez saisir l'age de l'animal:");
+            string animalAge = Console.ReadLine();
+            Console.WriteLine("Veuillez saisir le poids de l'animal:");
+            string animalWeight = Console.ReadLine();
 
             do
             {
@@ -126,26 +125,26 @@ namespace Projet_1_Shell
             Console.WriteLine("Nom du propriétaire:");
             string ownerName = Console.ReadLine();
 
+            id[tap] =d;
             animalNames[tap] = animalName;
             animalTypes[tap] = animalType;
-            animalAges[tap] = animalAge;
+            animalAges[tap]= animalAge;
             animalWeights[tap] = animalWeight;
             animalColors[tap] = animalColor;
-            ownerNames[tap] = ownerName;
+            ownerNames[tap]= ownerName;
             tap++;
             StartTheMachine();
 
         }
         private void VoirListeAnimauxPension()
         {
-            Console.WriteLine(" ---------------------------------------------------------");
-            Console.WriteLine("{0} {1} {2} {3} {4} {5} {6}", "|ID", "|TYPE ANIMAL", "|NOM  ", "|AGE", "|POIDS", "|COULEUR", "|PROPRIÉTAIRE |");
-            Console.WriteLine(" ---------------------------------------------------------");
+            Console.WriteLine(" -------------------------------------------------------------------------");
+            Console.WriteLine("{0,0} {1,10} {2,10} {3,8} {4,8} {5,10} {6,18}", "| ID", "|TYPE ANIMAL", "|NOM ", "|AGE", "|POIDS", "|COULEUR", "|PROPRIÉTAIRE |");
+            Console.WriteLine(" -------------------------------------------------------------------------");
 
             for (tap = 0; tap < 10; tap++)
             {
-                Console.Write("{0}\t {1}\t {2}\t {3}\t {4}\t {5}\t {6}\n", tap, animalTypes[tap], animalNames[tap], animalAges[tap], animalWeights[tap], animalColors[tap], ownerNames[tap]);
-
+                Console.WriteLine("{0,4} {1,8} {2,14} {3,6} {4,6} {5,14} {6,15}", id[tap], animalTypes[tap], animalNames[tap], animalAges[tap], animalWeights[tap], animalColors[tap], ownerNames[tap]);
             }
             StartTheMachine();
 
@@ -169,7 +168,7 @@ namespace Projet_1_Shell
         private void VoirNombreTotalAnimaux()
         {
             Console.WriteLine("----------------------------------------");
-            Console.WriteLine("| NOMBRE ANIMEAUX   |");
+            Console.WriteLine("| NOMBRE ANIMAUX   |");
             Console.WriteLine("----------------------------------------");
             int nb = 0;
             for (int tab = 0; tab < 10; tab++)
@@ -192,7 +191,8 @@ namespace Projet_1_Shell
             int tw = 0;
             for (int tap = 0; tap < 10; tap++)
             {
-                tw += animalWeights[tap];
+                int totalWeight = int.Parse(animalWeights[tap]);
+                tw += totalWeight;
             }
 
             Console.WriteLine(tw);
@@ -201,9 +201,14 @@ namespace Projet_1_Shell
 
         private void ExtraireAnimauxSelonCouleurs()
         {
+            string animalColor;
+            do 
+            { 
             Console.Write("VEUILLEZ SAISIR LA COULEUR DE RECHERCHE \n");
 
-            string animalColor = Console.ReadLine();
+             animalColor = Console.ReadLine();
+
+            } while (animalColor != "rouge" && animalColor != "bleu" && animalColor != "violet");
 
             Console.WriteLine("Dans la fonction voir liste animaux pension");
             Console.WriteLine("Animaux de couleur {0}:", animalColor);
@@ -229,8 +234,10 @@ namespace Projet_1_Shell
         private void RetirerUnAnimalDeListe()
         {
             Console.Write("VEUILLEZ SAISIR ID DE L'ANIMAL\n");
-
-            int tap = Int32.Parse(Console.ReadLine());
+            do
+            {
+                int tap = Int32.Parse(Console.ReadLine());
+            } while (tap < 10);
 
             Console.WriteLine("Dans la fonction voir liste animaux pension");
 
@@ -240,14 +247,13 @@ namespace Projet_1_Shell
             }
             else
             {
-                id[tap] = Convert.ToInt32(null);
+                id[tap] =null;
                 animalTypes[tap] = null;
                 animalNames[tap] = null;
-                animalAges[tap] = Convert.ToInt32(null);
-                animalWeights[tap] = Convert.ToInt32(null);
+                animalAges[tap] = null;
+                animalWeights[tap] = null;
                 ownerNames[tap] = null;
                 animalColors[tap] = null;
-                totalWeight -= animalWeights[tap];
             }
             VoirListeAnimauxPension();
 
